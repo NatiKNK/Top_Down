@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvpg66egqc010"]
+
+[ext_resource type="Texture2D" uid="uid://dctjdt2mmw7m3" path="res://assets/knight.png" id="1_0kwff"]
+[ext_resource type="Script" uid="uid://cmt00i3h7bnie" path="res://scenes/player.gd" id="1_pf73y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pf73y"]
+radius = 23.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_pf73y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0kwff")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17)
+shape = SubResource("CircleShape2D_pf73y")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 1)
