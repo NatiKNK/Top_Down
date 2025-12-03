@@ -1,16 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvpg66egqc010"]
+[gd_scene load_steps=11 format=3 uid="uid://bvpg66egqc010"]
 
-[ext_resource type="Texture2D" uid="uid://dctjdt2mmw7m3" path="res://assets/knight.png" id="1_0kwff"]
 [ext_resource type="Script" uid="uid://cmt00i3h7bnie" path="res://scenes/player.gd" id="1_pf73y"]
+[ext_resource type="Texture2D" uid="uid://bj5ms7x41lqa4" path="res://assets/knight/knight_movement1.png" id="3_bjfpg"]
+[ext_resource type="Texture2D" uid="uid://b5wmg3h1agnth" path="res://assets/knight/knight_movement2.png" id="4_amrm4"]
+[ext_resource type="Texture2D" uid="uid://do78e5ckd4o0p" path="res://assets/knight/knight_movement3.png" id="5_1guou"]
+[ext_resource type="Texture2D" uid="uid://djwsdorq7bkqk" path="res://assets/knight/knight_movement4.png" id="6_f53j6"]
+[ext_resource type="Texture2D" uid="uid://do2mliath45tr" path="res://assets/knight/knight_movement5.png" id="7_04hy4"]
+[ext_resource type="Texture2D" uid="uid://bfn8kbf66devh" path="res://assets/knight/knight_movement6.png" id="8_l3mkp"]
+[ext_resource type="Texture2D" uid="uid://bev7qsilib70s" path="res://assets/knight/knight_movement7.png" id="9_mxfp2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pf73y"]
 radius = 23.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_lbva7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bjfpg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bjfpg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_amrm4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1guou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_f53j6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_04hy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_l3mkp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mxfp2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_pf73y")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_0kwff")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 17)
@@ -18,3 +58,9 @@ shape = SubResource("CircleShape2D_pf73y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 1)
+zoom = Vector2(1.2, 1.2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lbva7")
+animation = &"idle"
+autoplay = "idle"
