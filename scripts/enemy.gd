@@ -2,7 +2,7 @@
 extends CharacterBody2D
 
 @export var speed := 200
-var health := 1
+var health := 67
 
 func _ready():
 	add_to_group("Enemies")
