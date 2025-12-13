@@ -9,8 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bfn8kbf66devh" path="res://assets/knight/knight_movement6.png" id="8_l3mkp"]
 [ext_resource type="Texture2D" uid="uid://bev7qsilib70s" path="res://assets/knight/knight_movement7.png" id="9_mxfp2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pf73y"]
-radius = 23.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iii86"]
+radius = 17.0
+height = 72.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbva7"]
 animations = [{
@@ -53,8 +54,8 @@ animations = [{
 script = ExtResource("1_pf73y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 17)
-shape = SubResource("CircleShape2D_pf73y")
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_iii86")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 1)

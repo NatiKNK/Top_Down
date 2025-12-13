@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dry2qsj3qivav" path="res://assets/snake.png" id="2_wi828"]
 [ext_resource type="Texture2D" uid="uid://ci8bp6ogmigvg" path="res://assets/tlo/tlo1.png" id="3_ygxay"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nhupr"]
-radius = 18.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wi828"]
+radius = 24.0
+height = 56.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_wi828")
@@ -17,8 +18,8 @@ texture = ExtResource("2_wi828")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visibility_layer = 3
-position = Vector2(0, 9)
-shape = SubResource("CircleShape2D_nhupr")
+position = Vector2(6, 1)
+shape = SubResource("CapsuleShape2D_wi828")
 
 [node name="Tlo1" type="Sprite2D" parent="."]
 position = Vector2(-219, 562)

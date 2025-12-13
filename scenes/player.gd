@@ -1,7 +1,7 @@
 # Player.gd
 extends CharacterBody2D
 
-@export var speed := 300
+@export var speed := 200
 @export var attack_damage := 1
 @export var attack_range := 75
 
