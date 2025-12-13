@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bvpg66egqc010"]
 
-[ext_resource type="Script" uid="uid://cmt00i3h7bnie" path="res://scenes/player.gd" id="1_pf73y"]
+[ext_resource type="Script" uid="uid://cmt00i3h7bnie" path="res://scripts/player.gd" id="1_pf73y"]
 [ext_resource type="Texture2D" uid="uid://bj5ms7x41lqa4" path="res://assets/knight/knight_movement1.png" id="3_bjfpg"]
 [ext_resource type="Texture2D" uid="uid://b5wmg3h1agnth" path="res://assets/knight/knight_movement2.png" id="4_amrm4"]
 [ext_resource type="Texture2D" uid="uid://do78e5ckd4o0p" path="res://assets/knight/knight_movement3.png" id="5_1guou"]
@@ -8,10 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://do2mliath45tr" path="res://assets/knight/knight_movement5.png" id="7_04hy4"]
 [ext_resource type="Texture2D" uid="uid://bfn8kbf66devh" path="res://assets/knight/knight_movement6.png" id="8_l3mkp"]
 [ext_resource type="Texture2D" uid="uid://bev7qsilib70s" path="res://assets/knight/knight_movement7.png" id="9_mxfp2"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iii86"]
-radius = 17.0
-height = 72.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbva7"]
 animations = [{
@@ -50,12 +46,12 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iii86"]
+radius = 17.0
+height = 72.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_pf73y")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_iii86")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 1)
@@ -63,5 +59,9 @@ zoom = Vector2(1.2, 1.2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lbva7")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_iii86")
