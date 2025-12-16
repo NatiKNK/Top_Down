@@ -1,10 +1,11 @@
 extends CharacterBody2D
-
+class_name Player
+signal healthChanged
 @export var speed := 200
-var health := 3
+@export var maxHealth = 5
 var invincible := false
 var invincible_timer := 0.0
-
+@onready var currentHealth: int = maxHealth
 @onready var sprite = $AnimatedSprite2D  # LUB $Sprite2D jeśli nie masz animacji
 
 func _ready():
@@ -66,9 +67,9 @@ func _check_enemy_collisions():
 func take_damage(amount, enemy = null):
 	if invincible:
 		return
-	
-	health -= amount
-	print("Gracz trafiony! HP:", health)
+	currentHealth -= amount
+	print("Gracz trafiony! HP:", currentHealth)
+	healthChanged.emit()
 	
 	# Efekt otrzymania obrażeń
 	if sprite.has_method("set_modulate"):
@@ -83,7 +84,7 @@ func take_damage(amount, enemy = null):
 	invincible = true
 	invincible_timer = 1.0
 	
-	if health <= 0:
+	if currentHealth <= 0:
 		die()
 
 func die():

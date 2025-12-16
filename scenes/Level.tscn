@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ceuqy03524w8k"]
+[gd_scene load_steps=21 format=3 uid="uid://ceuqy03524w8k"]
 
 [ext_resource type="PackedScene" uid="uid://bvpg66egqc010" path="res://scenes/Player.tscn" id="1_uhqny"]
 [ext_resource type="PackedScene" uid="uid://dy8uvwfbajis3" path="res://scenes/Slime.tscn" id="2_k5jlv"]
@@ -8,9 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://dxwxqx662dntv" path="res://assets/tlo/3/tileset3 tlo3.png" id="6_faw0r"]
 [ext_resource type="Texture2D" uid="uid://dprxt7uia3d5m" path="res://assets/tlo/3/tileset3 tlo2.png" id="7_faw0r"]
 [ext_resource type="Texture2D" uid="uid://lxqeh0lpyi5f" path="res://assets/tlo/3/tileset3 tlo1.png" id="8_2eouu"]
-[ext_resource type="Texture2D" uid="uid://dbsk73ea4hb6j" path="res://assets/health_bar.png" id="9_2eouu"]
+[ext_resource type="Script" uid="uid://cjqv143qb6pds" path="res://scripts/health_bar.gd" id="10_ax7ne"]
 [ext_resource type="PackedScene" uid="uid://bgaq5327ob6iy" path="res://scenes/tree.tscn" id="11_ax7ne"]
+[ext_resource type="Texture2D" uid="uid://b88ei1ygcgbjs" path="res://assets/healthbarUnder.png" id="11_m0xki"]
 [ext_resource type="Script" uid="uid://btxj8c516uk0h" path="res://scripts/enemy_spawn.gd" id="11_sv41r"]
+[ext_resource type="Texture2D" uid="uid://c34r80jocd8y4" path="res://assets/healthbarProgress.png" id="11_xe3hh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2eouu"]
 texture = ExtResource("3_6vs76")
@@ -63,25 +65,36 @@ enemy_scene = ExtResource("2_k5jlv")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
-offset_left = -1814.0
-offset_top = -1766.0
-offset_right = 2080.0
-offset_bottom = 676.0
+offset_left = -1645.0
+offset_top = -1917.0
+offset_right = 2249.0
+offset_bottom = 525.0
 color = Color(0.05882353, 0.043137256, 0.07450981, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = -19.0
-offset_top = -106.0
-offset_right = 264.0
-offset_bottom = 268.0
-value = 100.0
-exp_edit = true
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+z_index = -1
+offset_right = 192.0
+offset_bottom = 54.0
+show_percentage = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 182.0
+offset_bottom = 44.0
 nine_patch_stretch = true
-texture_under = ExtResource("9_2eouu")
-texture_over = ExtResource("9_2eouu")
-texture_progress = ExtResource("9_2eouu")
+texture_under = ExtResource("11_m0xki")
+texture_progress = ExtResource("11_xe3hh")
+script = ExtResource("10_ax7ne")
+player = NodePath("../../Player")
 
 [node name="StaticBody2D" parent="." instance=ExtResource("11_ax7ne")]
 position = Vector2(-518, -70)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("11_ax7ne")]
+position = Vector2(-277, -299)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("11_ax7ne")]
+position = Vector2(461, 379)
