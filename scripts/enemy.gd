@@ -1,8 +1,9 @@
+# enemy.gd (Modified)
 extends CharacterBody2D
 
 @export var speed := 150
 @export var damage := 1
-var health := 2
+var health := 2  # Will be overwritten by spawner
 signal died
 
 func _ready():
@@ -21,14 +22,19 @@ func _physics_process(_delta):
 
 func take_damage(amount):
 	health -= amount
+	print("Enemy took damage! Health left: ", health)  # Debug
 	if health <= 0:
-		died.emit()
-		queue_free()
+		die()
+
+func die():
+	print("Enemy died!")  # Debug
+	died.emit()  # This will notify the spawner AND StageManager
+	queue_free()
 
 func _on_body_entered(body):
 	# Jeśli dotknęliśmy gracza
 	if body.is_in_group("player"):
 		body.take_damage(damage, self)
 
-func _on_tree_exiting():
-	died.emit()
+# Remove _on_tree_exiting() or keep it - either way works
+# But if you keep it, it might emit died twice
